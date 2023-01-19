@@ -29,7 +29,6 @@ def start_server():
 
         # applying it to socket level
         # lets us reuse the socket address
-        # TO-DO: look at how to reuse a PORT
         s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         s.listen()
@@ -38,7 +37,7 @@ def start_server():
         conn, addr = s.accept()
         handle_connection(conn, addr)
 
-    return
+    
 
 def start_threaded_server():
 
@@ -54,6 +53,5 @@ def start_threaded_server():
             thread = Thread(target = handle_connection, args = (conn, addr))
             thread.run()
 
-
-# start_server()
-start_threaded_server
+start_server()
+# start_threaded_server()
